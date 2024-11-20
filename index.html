@@ -78,6 +78,37 @@
         <path clip-path="url(#b)" d="M3 4V1h2v3h3v2H5v3H3V6H0V4h3zm3 6V7h3V4h7l1.83 2H21c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V10h3zm7 9c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-3.2-5c0 1.77 1.43 3.2 3.2 3.2s3.2-1.43 3.2-3.2-1.43-3.2-3.2-3.2-3.2 1.43-3.2 3.2z" />
       </svg>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const resultInput = document.getElementById("result");
+        const dialog = document.querySelector(".app__dialog");
+        const snackbar = document.querySelector(".app__snackbar");
+    
+        // Check value and redirect or show error
+        function handleInput() {
+          const value = resultInput.value.trim();
+          const meetingUrlPrefix = "https://meet.gd.edu.kg/meeting/";
+    
+          if (value.startsWith(meetingUrlPrefix)) {
+            window.location.href = value; // Redirect to the URL
+          } else {
+            showSnackbar("Invalid QR code. URL does not match the expected format.");
+          }
+        }
+    
+        // Show snackbar with a message
+        function showSnackbar(message) {
+          snackbar.textContent = message;
+          snackbar.classList.add("show");
+          setTimeout(() => {
+            snackbar.classList.remove("show");
+          }, 3000); // Message disappears after 3 seconds
+        }
+    
+        // Add event listener to open button
+        document.querySelector(".app__dialog-open").addEventListener("click", handleInput);
+      });
+    </script>
     <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.6/pwacompat.min.js" integrity="sha384-GOaSLecPIMCJksN83HLuYf9FToOiQ2Df0+0ntv7ey8zjUHESXhthwvq9hXAZTifA"
       crossorigin="anonymous">
     </script>
