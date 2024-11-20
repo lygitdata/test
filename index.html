@@ -82,42 +82,5 @@
       crossorigin="anonymous">
     </script>
     <script src="bundle.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const resultInput = document.getElementById("result");
-        const openButton = document.querySelector(".app__dialog-open");
-        const snackbar = document.querySelector(".app__snackbar");
-    
-        // Check value and click Open button if valid
-        function handleInput() {
-          const value = resultInput.value.trim();
-          const meetingUrlPrefix = "https://meet.gd.edu.kg/meeting/";
-    
-          if (value.startsWith(meetingUrlPrefix)) {
-            openButton.click(); // Simulate Open button click
-          } else {
-            showSnackbar("Invalid QR code. URL does not match the expected format.");
-          }
-        }
-    
-        // Show snackbar with a message
-        function showSnackbar(message) {
-          snackbar.textContent = message;
-          snackbar.classList.add("show");
-          setTimeout(() => {
-            snackbar.classList.remove("show");
-          }, 3000); // Message disappears after 3 seconds
-        }
-    
-        // Add event listener to input
-        resultInput.addEventListener("input", handleInput);
-    
-        // Add click event to Open button for redirection
-        openButton.addEventListener("click", () => {
-          const url = resultInput.value.trim();
-          window.location.href = url; // Redirect to the entered URL
-        });
-      });
-    </script>
   </body>
 </html>
